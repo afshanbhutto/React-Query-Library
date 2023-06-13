@@ -28,4 +28,38 @@ npm i @tanstack/react-query
 
 ```
 
-  
+## Code
+
+Everything wrapped inside QueryClientProvider can have access to QueryClient.
+
+```
+
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+
+
+
+import App from "./App";
+
+const client = new QueryClient();
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
+root.render(
+  <StrictMode>
+    <QueryClientProvider client={client}>
+    <App />
+    </QueryClientProvider>
+  </StrictMode>
+);
+
+```
+
+We can do two main things in React query
+  * useQuery() to get data from the server
+  * useMutation() to change some type of data
+for example, getting all posts from the server is a query, and uploading brand-new posts is a mutation.
+
+useQuery() takes an object and there  are a lot of things we can specify on it. The most important one is **Key** which uniquely identifies the query and the other one is the query function which is to run that actually queries our data.
